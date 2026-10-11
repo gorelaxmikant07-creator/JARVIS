@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050b14">
+  <meta name="description" content="JARVIS — personal AI assistant prototype">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./styles.css">
+  <title>JARVIS // Personal Assistant</title>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-label="JARVIS emblem"><span>J</span></div>
+        <div><div class="brand-name">J.A.R.V.I.S.</div><div class="brand-sub">PERSONAL ASSISTANT SYSTEM</div></div>
+      </div>
+      <button id="settingsBtn" class="icon-button" aria-label="Open settings" title="Settings">⚙</button>
+    </header>
+
+    <section class="hero">
+      <div class="system-status"><span class="status-dot"></span><span id="systemStatus">SYSTEM ONLINE · LOCAL MODE</span></div>
+      <div class="reactor-wrap">
+        <div class="reactor-ring ring-outer"></div><div class="reactor-ring ring-middle"></div>
+        <div class="reactor-ring ring-inner"></div>
+        <div class="reactor-core"><span>J</span></div>
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+      </div>
+      <h1>At your service.</h1>
+      <p class="hero-copy">Your personal assistant interface is ready, sir.</p>
+      <div class="quick-stats">
+        <div><span class="stat-label">MODE</span><strong>LOCAL</strong></div>
+        <div><span class="stat-label">MEMORY</span><strong id="memoryStatus">READY</strong></div>
+        <div><span class="stat-label">AI LINK</span><strong id="aiStatus">NOT CONNECTED</strong></div>
+      </div>
+    </section>
+
+    <section class="console panel">
+      <div class="panel-heading"><div><span class="eyebrow">COMMAND CONSOLE</span><h2>Conversation</h2></div><button id="clearBtn" class="text-button">Clear</button></div>
+      <div id="messages" class="messages" aria-live="polite">
+        <article class="message assistant"><div class="avatar">J</div><div class="bubble"><div class="message-label">JARVIS <span>· SYSTEM</span></div><p>Good evening. My local systems are operational. I can run basic commands, save notes, and maintain this conversation on your device. AI model connectivity has not yet been configured.</p></div></article>
+      </div>
+      <div class="suggestions">
+        <button class="suggestion" data-prompt="What can you do?">What can you do?</button>
+        <button class="suggestion" data-prompt="System status">System status</button>
+        <button class="suggestion" data-prompt="Help me plan my day">Plan my day</button>
+      </div>
+      <form id="chatForm" class="composer">
+        <textarea id="promptInput" rows="1" placeholder="Enter a command, sir..." aria-label="Message to JARVIS"></textarea>
+        <button id="micBtn" class="icon-button mic-button" type="button" aria-label="Voice input" title="Voice input">🎙</button>
+        <button class="send-button" type="submit" aria-label="Send message">➤</button>
+      </form>
+      <div class="console-foot"><span><i class="tiny-dot"></i> LOCAL COMMAND ENGINE</span><span>ENTER TO SEND · SHIFT+ENTER FOR NEW LINE</span></div>
+    </section>
+
+    <section class="tools-grid">
+      <button class="tool-card" data-command="time"><span class="tool-icon">◷</span><span><strong>Time & date</strong><small>Local device clock</small></span><span class="tool-arrow">↗</span></button>
+      <button class="tool-card" data-command="notes"><span class="tool-icon">▤</span><span><strong>Memory notes</strong><small>View saved notes</small></span><span class="tool-arrow">↗</span></button>
+      <button class="tool-card" data-command="help"><span class="tool-icon">⌘</span><span><strong>Command guide</strong><small>Available commands</small></span><span class="tool-arrow">↗</span></button>
+    </section>
+
+    <footer>JARVIS PROTOTYPE <span>•</span> BUILD 0.1.0 <span>•</span> NOT CONNECTED TO AN AI MODEL</footer>
+  </main>
+
+  <dialog id="settingsDialog" class="settings-dialog">
+    <form method="dialog" class="settings-form">
+      <div class="panel-heading"><div><span class="eyebrow">CONFIGURATION</span><h2>System settings</h2></div><button class="icon-button" aria-label="Close settings">✕</button></div>
+      <label for="displayName">How should JARVIS address you?</label>
+      <input id="displayName" maxlength="40" placeholder="sir">
+      <p class="hint">Saved on this device only.</p>
+      <label class="toggle-row"><span><strong>Spoken responses</strong><small>Use your browser's speech synthesis</small></span><input id="speechToggle" type="checkbox" checked></label>
+      <label class="toggle-row"><span><strong>Reduce animation</strong><small>Use a calmer interface</small></span><input id="motionToggle" type="checkbox"></label>
+      <button id="saveSettings" class="primary-button" value="save">Save settings</button>
+      <p class="hint security-note">Never paste API keys into this page or a public repository. A future AI connection should use a secure backend.</p>
+    </form>
+  </dialog>
+  <script src="./core/memory.js"></script>
+  <script src="./adapters/voice.js"></script>
+  <script src="./core/commands.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
